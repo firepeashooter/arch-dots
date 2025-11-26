@@ -41,7 +41,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -49,15 +49,15 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 #Adjusting the brightness
 
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 #Controlling keyboard backlight
 
@@ -67,13 +67,6 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 #Screenshot Shortcut
 
 bindsym Mod4+Shift+s exec flameshot gui
-
-
-
-
-
-
-
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -219,12 +212,20 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
 
 #On startup, starts firefox on workspace 2 and switches back to workspace 1
 exec --no-startup-id i3-msg 'workspace 2; exec firefox;'
+exec --no-startup-id i3-msg 'workspace 1; exec alacritty;'
 
 #On startup, run light-locker, so that later we can use it
 exec_always --no-startup-id /usr/bin/light-locker
 
 #On startup start the wallpaper
-exec --no-startup-id feh --bg-scale /home/firepea19/images/wp14193059-anime-autumn-forest-wallpapers.png
+
+#Fall Wallpaper
+#exec --no-startup-id feh --bg-scale /home/firepea19/images/wp14193059-anime-autumn-forest-wallpapers.png
+
+#Winter Wallpaper
+exec --no-startup-id feh --bg-scale /home/firepea19/images/winterWallpaper.jpg
+
+
 
 #On startup run picom (rounded corners and shadows on i3)
 exec --no-startup-id picom
@@ -248,8 +249,17 @@ gaps outer 5px
 # from the generated scheme.
 # NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
 # it fails to get colors from Xresources.
+
+# Autumn 
+# #9b673c
+
+# Winter
+# #2a4f8c
+
+
+
 set_from_resource $fg i3wm.color7 #f0f0f0
-set_from_resource $bg i3wm.color2 #9b673c
+set_from_resource $bg i3wm.color2 #2a4f8c
 
 # class                 border  backgr. text indicator child_border
 client.focused          $bg     $bg     $fg  $bg       $bg
